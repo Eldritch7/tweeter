@@ -13,7 +13,9 @@
     <!-- External Fonts -->
   
     
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
     
     
     <!-- App CSS -->
@@ -27,6 +29,9 @@
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
+    <!-- Character Counter Script -->
+    <script type="text/javascript" src="./scripts/composer-char-counter.js"></script>
+  
   </head>
 
   <body>
@@ -54,18 +59,21 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       
-      <!-- Form Element: -->
+      <!-- Form Element: for creating new tweet -->
       
       <section class="new-tweet">
         <h2 id="composeTweet">Compose Tweet</h2>
         <form action="/tweets" method="POST" id="new-tweet-form">
           <label class="humming" for="tweet-text">What are you humming about?</label>
-          <textarea id="textArea" name="text" id="tweet-text"></textarea>
+          <textarea class="tweet-text" id="textArea" name="text" id="tweet-text"></textarea>
           <div class="new-tweet-footer">
             <button id="tweetButton" type="submit">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
+      </section>
+      <section id = 'tweets-container'>
+        
       </section>
     
 
