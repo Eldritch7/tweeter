@@ -35,8 +35,6 @@ main {
   body {
     display: flex;
     flex-direction: row;
-   
-    
   }
   main {
     padding-top: 120px;
@@ -44,21 +42,18 @@ main {
   .nav-placeholder {
     height: 120px;
     width: 100%;
-    
-
   }
   .main-header {
-    width: 10%;
+    width: 1em;
     margin-top: 220px;
-   margin-left: 10em;
-   margin-right: 10em;
-   margin-bottom: 10em;
-    /* margin: 2em 2em 2em 120px; */
-    background-color: #28BBFF;
+    margin-left: 3em;
+    margin-right: 3em;
+    background-color: #28bbff;
     border-radius: 7%;
+  }
+
+  .container {
+    width: 100%;
   }
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */

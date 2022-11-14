@@ -1,11 +1,9 @@
 // Test / driver code (temporary). Eventually will get this from the server.
 $(document).ready(function () {
-  console.log("script 2 is working!");
-
   //loop through the data to create many tweets
   const renderTweets = function (tweets) {
     let data = tweets[0];
-    console.log(`tweetsnot0`, tweets);
+
     let $container = $("#tweets-container").html("");
     for (let tweet in tweets) {
       let $tweet = createTweetElement(tweets[tweet]);
@@ -65,38 +63,33 @@ $(document).ready(function () {
   $("form").on("submit", (event) => {
     event.preventDefault();
     let data = $("form").serialize();
-    let $tweetText = $('textarea').val();
+    let $tweetText = $("textarea").val();
     let $tweetLength = $tweetText.length;
-    console.log(`$tweetLength`, $tweetLength);
-    console.log(`$tweetText`, $tweetText);
     if ($tweetText.length > 140) {
-      console.log('too many characters'); 
-      $('.error-message').slideDown();
-      $('.error-message').text("⛔ Tweet can't exceed 140 characters");
+      $(".error-message").slideDown();
+      $(".error-message").text("⛔ Tweet can't exceed 140 characters");
       //reloadPage();
-    return false;
+      return false;
     } else if (!$tweetText) {
-      $('.icon').slideDown();
-      $('.error-message').slideDown();
-      $('.error-message').text("⛔ Type in some thoughts :)");
+      $(".icon").slideDown();
+      $(".error-message").slideDown();
+      $(".error-message").text("⛔ Type in some thoughts :)");
       return false;
     }
-
 
     $.ajax({
       url: "/tweets",
       method: "POST",
       data,
-    })
-    .then(() => {
+    }).then(() => {
       reloadPage();
-    })
+    });
   });
 
-  const reloadPage = function() {
-    $('.error-message').slideUp();
-    $('textarea').val('');
-    $('.counter').text(140);
+  const reloadPage = function () {
+    $(".error-message").slideUp();
+    $("textarea").val("");
+    $(".counter").text(140);
     loadTweets();
   };
 
