@@ -25,12 +25,38 @@ body {
 main {
   display: flex;
   background-color: #f4f1ec;
-  width: 100%;
-  padding-right: 5%;
-  padding-left: 5%;
+  width: 90;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+   
+    
+  }
+  main {
+    padding-top: 120px;
+  }
+  .nav-placeholder {
+    height: 120px;
+    width: 100%;
+    
+
+  }
+  .main-header {
+    width: 10%;
+    margin-top: 220px;
+   margin-left: 10em;
+   margin-right: 10em;
+   margin-bottom: 10em;
+    /* margin: 2em 2em 2em 120px; */
+    background-color: #28BBFF;
+    border-radius: 7%;
+  }
 }
 
 /*
