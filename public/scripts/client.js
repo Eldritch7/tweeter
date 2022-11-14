@@ -1,5 +1,5 @@
 // Test / driver code (temporary). Eventually will get this from the server.
-$(document).ready(function() {
+$(document).ready(function () {
   console.log("script 2 is working!");
 
   //loop through the data to create many tweets
@@ -9,12 +9,11 @@ $(document).ready(function() {
     let $container = $("#tweets-container").html("");
     for (let tweet in tweets) {
       let $tweet = createTweetElement(tweets[tweet]);
-      $("#tweets-container").append($tweet);
+      $("#tweets-container").prepend($tweet);
     }
 
     return $("#tweets-container");
   };
-
 
   //Create one tweet element
   const createTweetElement = function (tweet) {
@@ -55,28 +54,49 @@ $(document).ready(function() {
     return $tweet;
   };
 
-  //Stop normal form submission
-  $('form').on('submit', event => {
+  //Form Submission Logic
+  $("form").on("submit", (event) => {
     event.preventDefault();
-    let data = $('form').serialize();
-    console.log('DATA', data);
+    let data = $("form").serialize();
+    let $tweetText = $('textarea').val();
+    let $tweetLength = $tweetText.length;
+    console.log(`$tweetLength`, $tweetLength);
+    console.log(`$tweetText`, $tweetText);
+    if ($tweetText.length > 140) {
+      console.log('too many characters'); 
+      reloadPage();
+    alert("too many characters!");
+    return false;
+    } else if (!$tweetText) {
+      alert("Type in some thoughts :)");
+      return false;
+    }
+
     $.ajax({
       url: "/tweets",
       method: "POST",
-      data
-    });
+      data,
+    })
+    .then(() => {
+      reloadPage();
+    })
   });
+
+  const reloadPage = function() {
+    $('textarea').val('');
+    $('.counter').text(140);
+    loadTweets();
+  };
 
   //Load tweets from Database
   const loadTweets = () => {
     $.ajax({
       url: "/tweets",
-      action: "GET"
-    })
-    .then((data) => {
+      action: "GET",
+    }).then((data) => {
       renderTweets(data);
     });
-  }
+  };
 
   return loadTweets();
 });
