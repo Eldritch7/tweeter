@@ -72,8 +72,8 @@ $(document).ready(function () {
     if ($tweetText.length > 140) {
       console.log('too many characters'); 
       $('.error-message').slideDown();
-      $('.error-text').text("⛔ Tweet can't exceed 140 characters");
-      reloadPage();
+      $('.error-message').text("⛔ Tweet can't exceed 140 characters");
+      //reloadPage();
     return false;
     } else if (!$tweetText) {
       $('.icon').slideDown();
@@ -81,6 +81,7 @@ $(document).ready(function () {
       $('.error-message').text("⛔ Type in some thoughts :)");
       return false;
     }
+
 
     $.ajax({
       url: "/tweets",
@@ -93,6 +94,7 @@ $(document).ready(function () {
   });
 
   const reloadPage = function() {
+    $('.error-message').slideUp();
     $('textarea').val('');
     $('.counter').text(140);
     loadTweets();
