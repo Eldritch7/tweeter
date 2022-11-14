@@ -15,6 +15,13 @@ $(document).ready(function () {
     return $("#tweets-container");
   };
 
+  //Escape Function
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
   //Create one tweet element
   const createTweetElement = function (tweet) {
     let $tweet = `<article class="tweet">
@@ -25,14 +32,14 @@ $(document).ready(function () {
       src=${tweet.user.avatars}
       alt="avatar-img"
     />
-    <p class="user-name">${tweet.user.name}</p>
+    <p class="user-name">${escape(tweet.user.name)}</p>
   </div>
-  <p class="tweeter-handle">${tweet.user.handle}</p>
+  <p class="tweeter-handle">${escape(tweet.user.handle)}</p>
   </header>
 
   <div class="tweet-content">
   <p class="tweet-words">
-    ${tweet.content.text}
+    ${escape(tweet.content.text)}
   </p>
 </div>
 
