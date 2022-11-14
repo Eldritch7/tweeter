@@ -71,11 +71,14 @@ $(document).ready(function () {
     console.log(`$tweetText`, $tweetText);
     if ($tweetText.length > 140) {
       console.log('too many characters'); 
+      $('.error-message').slideDown();
+      $('.error-text').text("⛔ Tweet can't exceed 140 characters");
       reloadPage();
-    alert("too many characters!");
     return false;
     } else if (!$tweetText) {
-      alert("Type in some thoughts :)");
+      $('.icon').slideDown();
+      $('.error-message').slideDown();
+      $('.error-message').text("⛔ Type in some thoughts :)");
       return false;
     }
 
